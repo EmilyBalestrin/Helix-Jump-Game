@@ -1,0 +1,37 @@
+# Ignorar Library, Temp, Logs e outras pastas geradas pelo Unity
+HelixJump Game/Library/
+HelixJump Game/Temp/
+HelixJump Game/Logs/
+HelixJump Game/Obj/
+HelixJump Game/Build/
+HelixJump Game/Builds/
+HelixJump Game/MemoryCaptures/
+HelixJump Game/UserSettings/
+
+# Arquivos de IDE (Visual Studio, Rider, etc.)
+HelixJump Game/*.sln
+HelixJump Game/*.csproj
+HelixJump Game/*.unityproj
+HelixJump Game/*.user
+HelixJump Game/*.userprefs
+HelixJump Game/*.suo
+HelixJump Game/.vs/
+HelixJump Game/.idea/
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Saídas de build
+*.apk
+*.aab
+*.unitypackage
+
+# Outros arquivos temporários
+*.pidb
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.booproj
+*.svd
