@@ -12,7 +12,7 @@ public class HelixManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        numberOfRings = 12;
+        numberOfRings = 5;
         SpawnRing(0); //spawn do anel inicial
         for (int i = 0; i < numberOfRings-1; i++)
         {

@@ -7,8 +7,6 @@ public class Player : MonoBehaviour
     private new Rigidbody rigidbody;
     public float bounceForce = 6f;
 
-    //adicionar audio ao jogo
-
     // Start is called before the first frame update
     void Start()
     {
@@ -25,18 +23,22 @@ public class Player : MonoBehaviour
     {   //faz a bola quicar
         rigidbody.velocity = new Vector3(rigidbody.velocity.x, bounceForce, rigidbody.velocity.z);
         string materialName = collision.transform.GetComponent<MeshRenderer>().material.name;
-        Debug.Log(materialName);
+       // Debug.Log(materialName);
 
+        //colocar sons no jogo
         if (materialName == "MaterialSafe (Instance)")
         {
-            Debug.Log("Estou salvo");
+            //Debug.Log("Estou salvo");
+
         }
         else if (materialName == "MaterialUnSafe (Instance)")
         {
-            Debug.Log("GAMEOVER!!!!!!");
+            //Debug.Log("GAMEOVER!!!!!!");
+            GameManager.gameOver = true;
         } else if (materialName == "MaterialLastRing (Instance)")
         {
-            Debug.Log("YOU WIN!!!!!");
+            //Debug.Log("YOU WIN!!!!!");
+            GameManager.levelCompleted = true;
         }
     }
 }
