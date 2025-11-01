@@ -24,5 +24,19 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {   //faz a bola quicar
         rigidbody.velocity = new Vector3(rigidbody.velocity.x, bounceForce, rigidbody.velocity.z);
+        string materialName = collision.transform.GetComponent<MeshRenderer>().material.name;
+        Debug.Log(materialName);
+
+        if (materialName == "MaterialSafe (Instance)")
+        {
+            Debug.Log("Estou salvo");
+        }
+        else if (materialName == "MaterialUnSafe (Instance)")
+        {
+            Debug.Log("GAMEOVER!!!!!!");
+        } else if (materialName == "MaterialLastRing (Instance)")
+        {
+            Debug.Log("YOU WIN!!!!!");
+        }
     }
 }
