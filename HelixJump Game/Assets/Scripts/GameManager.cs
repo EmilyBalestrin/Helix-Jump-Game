@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -35,6 +36,41 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //implemantar HUD
+        //informar o nível atual e o score
+
+        //controlar o inicio de jogo
+
+        //controlar o fim de jogo
+        if (gameOver)
+        {
+            Time.timeScale = 0; //pausando o jogo
+            //controlar a cena e exibir o high score
+            //IMPLEMENTAR mecânica de pontuação 
+
+            //desktop
+            if (Input.GetButton("Fire1"))
+            {
+                GameManager.score = 0;
+                SceneManager.LoadScene(0);
+            }
+
+            //IMPLEMENTAR versão mobile
+        }
+
+        if (levelCompleted)
+        {
+            Time.timeScale = 0;
+            //controlar a cena e exibir o reinicio de jogo
+            PlayerPrefs.SetInt("CurrentLevelIndex", currentLevelIndex+1);
+
+            //desktop
+            if (Input.GetButton("Fire1"))
+            { 
+                SceneManager.LoadScene(0);
+            }
+
+            //IMPLEMENTAR versão mobile
+        }
     }
 }
