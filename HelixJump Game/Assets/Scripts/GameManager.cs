@@ -9,9 +9,9 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     //dados da classe
-    public static bool isGameStarted; //indica se o jogo começou
-    public static bool gameOver; //indica se o jogo acabou
-    public static bool levelCompleted; //indica se o nível foi completado
+    public static bool isGameStarted = false; //indica se o jogo começou
+    public static bool gameOver = false; //indica se o jogo acabou
+    public static bool levelCompleted = false; //indica se o nível foi completado
     public static bool mute = false; //controla o estado do som
     public static int currentLevelIndex; //nível atual do jogo
     public static int numberOfPassedRings; //quantidade de anéis passados
@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     //Itens da Hud
     public GameObject gamePlayPanel; //painel do progessBar
     public GameObject gameOverPanel; //painel do gameOVer
+    public GameObject gameMenuPanel;
     public GameObject levelCompletedPanel; //painel do gameOVer
 
 
@@ -47,17 +48,22 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        Time.timeScale = 1; //desativando o pause no jogo
+        //Time.timeScale = 1; //desativando o pause no jogo
         if (gameOver)
         {
             gameOver = false;
             score = 0;
+            isGameStarted = false;
         }
 
-        gameOver = false; //iniciando o jogo como não acabado
-        levelCompleted = false; //iniciando o nível como não completado
-        isGameStarted = false; //iniciando o jogo como não começado
-        numberOfPassedRings = 0; //zerando a quantidade de anéis passados
+        if (!isGameStarted)
+        {
+            gameMenuPanel.SetActive(true);
+        }
+
+        levelCompleted = false; 
+        //isGameStarted = false;
+        numberOfPassedRings = 0;
     }
 
     // Update is called once per frame

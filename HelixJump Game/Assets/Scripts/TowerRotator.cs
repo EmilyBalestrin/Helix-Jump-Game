@@ -16,6 +16,7 @@ public class TowerRotator : MonoBehaviour
     {
         if (GameManager.gameOver) return;
         if (GameManager.levelCompleted) return;
+        if (!GameManager.isGameStarted) return;
 
         //fazer a programação para funcionar no mobile
         if (Input.GetAxis("Horizontal") != 0)
