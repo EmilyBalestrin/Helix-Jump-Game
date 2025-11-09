@@ -20,7 +20,11 @@ public class Player : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision)
-    {   //faz a bola quicar
+    {   
+        if (GameManager.gameOver) return;
+        if (GameManager.levelCompleted) return;
+
+        //faz a bola quicar
         rigidbody.velocity = new Vector3(rigidbody.velocity.x, bounceForce, rigidbody.velocity.z);
         string materialName = collision.transform.GetComponent<MeshRenderer>().material.name;
        // Debug.Log(materialName);

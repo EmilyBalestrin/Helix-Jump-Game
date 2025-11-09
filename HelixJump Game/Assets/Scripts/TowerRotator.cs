@@ -14,6 +14,9 @@ public class TowerRotator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.gameOver) return;
+        if (GameManager.levelCompleted) return;
+
         //fazer a programação para funcionar no mobile
         if (Input.GetAxis("Horizontal") != 0)
         {

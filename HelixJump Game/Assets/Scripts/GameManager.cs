@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
+
 public class GameManager : MonoBehaviour
 {
     //dados da classe
@@ -19,11 +20,15 @@ public class GameManager : MonoBehaviour
 
     //Itens da Hud
     public GameObject gamePlayPanel; //painel do progessBar
+    public GameObject gameOverPanel; //painel do gameOVer
 
     public Slider progressBarSlider; //slider
     public TextMeshProUGUI currentLevelText; //texto do nível atual
     public TextMeshProUGUI nextLevelText; //texto do próximo nível
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI scoreGameOverText;
+    public TextMeshProUGUI highScoreGameOverText;
+
 
 
 
@@ -41,6 +46,12 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1; //desativando o pause no jogo
+        if (gameOver)
+        {
+            gameOver = false;
+            score = 0;
+        }
+
         gameOver = false; //iniciando o jogo como não acabado
         levelCompleted = false; //iniciando o nível como não completado
         isGameStarted = false; //iniciando o jogo como não começado
@@ -51,7 +62,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //implemantar HUD
-        //informar o nível atual e o score
         currentLevelText.text = currentLevelIndex.ToString();
         nextLevelText.text = (currentLevelIndex + 1).ToString();
         scoreText.text = score.ToString();
@@ -65,16 +75,28 @@ public class GameManager : MonoBehaviour
         //controlar o fim de jogo
         if (gameOver)
         {
-            Time.timeScale = 0; //pausando o jogo
+            //Time.timeScale = 0; //pausando o jogo
+            if (score > highScore)
+            {
+                highScore = score;
+                PlayerPrefs.SetInt("HighScore", highScore);
+            }
+
+            scoreGameOverText.text = "SCORE: " + score.ToString();
+            highScoreGameOverText.text = "HIGH SCORE: " + highScore.ToString();
+            gamePlayPanel.SetActive(false); //desativando o painel de jogo
+            gameOverPanel.SetActive(true); //ativando o painel de game over
+            Invoke("RestartLevel", 2f);
+
             //controlar a cena e exibir o high score
             //IMPLEMENTAR mecânica de pontuação 
 
             //desktop
-            if (Input.GetButton("Fire1"))
-            {
-                GameManager.score = 0;
-                SceneManager.LoadScene(0);
-            }
+            // if (Input.GetButton("Fire1"))
+            //{
+            //    GameManager.score = 0;
+            //    SceneManager.LoadScene(0);
+            //}
 
             //IMPLEMENTAR versão mobile
         }
@@ -93,5 +115,11 @@ public class GameManager : MonoBehaviour
 
             //IMPLEMENTAR versão mobile
         }
+    }
+
+    //recarrega a cena
+    private void RestartLevel()
+    {
+        SceneManager.LoadScene(0);
     }
 }
