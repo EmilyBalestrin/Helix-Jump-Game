@@ -24,7 +24,7 @@ Thumbs.db
 
 # Saídas de build
 *.apk
-!HelixJump Game/Builds/HelixJump_Final.apk
+!HelixJumpFinal.apk
 *.aab
 *.unitypackage
 
