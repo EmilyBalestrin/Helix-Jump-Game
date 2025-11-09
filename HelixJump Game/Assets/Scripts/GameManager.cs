@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,13 +17,25 @@ public class GameManager : MonoBehaviour
     public static int score = 0; //pontuação atual do jogador
     public static int highScore; //pontuação mais alta alcançada
 
+    //Itens da Hud
+    public GameObject gamePlayPanel; //painel do progessBar
+
+    public Slider progressBarSlider; //slider
+    public TextMeshProUGUI currentLevelText; //texto do nível atual
+    public TextMeshProUGUI nextLevelText; //texto do próximo nível
+    public TextMeshProUGUI scoreText;
+
+
 
     // Start is called before the first frame update
     private void Awake()
     {
+        //descomente a linha e execute para resetar o jogo
+        //PlayerPrefs.SetInt("CurrentLevelIndex", 1);
+
         //dados pegos da memória do dispositivo 
         highScore = PlayerPrefs.GetInt("HighScore", 0);
-        currentLevelIndex = PlayerPrefs.GetInt("CurrentLevelIndex", 0);
+        currentLevelIndex = PlayerPrefs.GetInt("CurrentLevelIndex", 1);
     }
 
     void Start()
@@ -38,6 +52,13 @@ public class GameManager : MonoBehaviour
     {
         //implemantar HUD
         //informar o nível atual e o score
+        currentLevelText.text = currentLevelIndex.ToString();
+        nextLevelText.text = (currentLevelIndex + 1).ToString();
+        scoreText.text = score.ToString();
+
+        //altera o valor da barra de progesso
+        int progress = numberOfPassedRings * 100 / FindObjectOfType<HelixManager>().numberOfRings;
+        progressBarSlider.value = progress;
 
         //controlar o inicio de jogo
 

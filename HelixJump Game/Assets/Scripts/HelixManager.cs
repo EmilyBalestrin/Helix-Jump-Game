@@ -7,7 +7,7 @@ public class HelixManager : MonoBehaviour
     public GameObject[] helixRings;
     private float ySpawn = 0; //coordenada para criar os aneis
     private float ringsDistance = 5f; //distancia entre aneis
-    private int numberOfRings = 0; //quantidade de aneis da torre
+    public int numberOfRings = 0; //quantidade de aneis da torre
 
     // Start is called before the first frame update
     void Start()
