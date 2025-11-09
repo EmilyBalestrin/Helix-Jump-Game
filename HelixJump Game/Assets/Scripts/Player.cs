@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
         if (materialName == "MaterialSafe (Instance)")
         {
             //Debug.Log("Estou salvo");
-            audioManager.Play("bounce");
+            if (GameManager.isGameStarted) audioManager.Play("bounce");
         }
         else if (materialName == "MaterialUnSafe (Instance)")
         {
