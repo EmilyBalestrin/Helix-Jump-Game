@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     //Itens da Hud
     public GameObject gamePlayPanel; //painel do progessBar
     public GameObject gameOverPanel; //painel do gameOVer
+    public GameObject levelCompletedPanel; //painel do gameOVer
+
 
     public Slider progressBarSlider; //slider
     public TextMeshProUGUI currentLevelText; //texto do nível atual
@@ -103,15 +105,19 @@ public class GameManager : MonoBehaviour
 
         if (levelCompleted)
         {
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
             //controlar a cena e exibir o reinicio de jogo
             PlayerPrefs.SetInt("CurrentLevelIndex", currentLevelIndex+1);
 
+            gamePlayPanel.SetActive(false); //desativando o painel de jogo
+            levelCompletedPanel.SetActive(true); //ativando o painel de game over
+            Invoke("RestartLevel", 2f);
+
             //desktop
-            if (Input.GetButton("Fire1"))
-            { 
-                SceneManager.LoadScene(0);
-            }
+            //if (Input.GetButton("Fire1"))
+            //{ 
+            //    SceneManager.LoadScene(0);
+            //}
 
             //IMPLEMENTAR versão mobile
         }
