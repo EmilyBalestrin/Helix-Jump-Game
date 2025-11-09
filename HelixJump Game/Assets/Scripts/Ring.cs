@@ -5,11 +5,13 @@ using UnityEngine;
 public class Ring : MonoBehaviour
 {
     private Transform player;
+    private AudioManager audioManager;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        audioManager = GameObject.Find("AudioManager").gameObject.GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -19,6 +21,7 @@ public class Ring : MonoBehaviour
         {
             GameManager.numberOfPassedRings++;
             GameManager.score++;
+            audioManager.Play("whoosh");
             Destroy(gameObject);
         }
     }
