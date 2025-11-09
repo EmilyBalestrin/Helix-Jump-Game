@@ -22,7 +22,7 @@ public class TowerRotator : MonoBehaviour
         if (Input.GetAxis("Horizontal") != 0)
         {
             float horizontal = Input.GetAxis("Horizontal");
-            transform.Rotate(0, -horizontal * rotationSpeed * 100f * Time.deltaTime, 0);
+            transform.Rotate(0, -horizontal * rotationSpeed * 180f * Time.deltaTime, 0);
         }
 
         // Mobile
