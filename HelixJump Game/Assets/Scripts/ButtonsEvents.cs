@@ -16,11 +16,11 @@ public class ButtonsEvents : MonoBehaviour
     {
         if (GameManager.mute)
         {
-            textButtonSound.text = "UNMUTE";
+            textButtonSound.text = "/";
         }
         else
         {
-            textButtonSound.text = "MUTE";
+            textButtonSound.text = "";
         }
     }
 
@@ -29,12 +29,12 @@ public class ButtonsEvents : MonoBehaviour
         if (GameManager.mute)
         {
             GameManager.mute = false;
-            textButtonSound.text = "MUTE";
+            textButtonSound.text = "";
         }
         else
         {
             GameManager.mute = true;
-            textButtonSound.text = "UNMUTE";
+            textButtonSound.text = "/";
         }
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TowerRotator : MonoBehaviour
 {
-    public float rotationSpeed = 150f;
+    public float rotationSpeed = 70f;
 
     void Start()
     {
@@ -18,11 +18,18 @@ public class TowerRotator : MonoBehaviour
         if (GameManager.levelCompleted) return;
         if (!GameManager.isGameStarted) return;
 
-        //fazer a programação para funcionar no mobile
+        //desktop
         if (Input.GetAxis("Horizontal") != 0)
         {
             float horizontal = Input.GetAxis("Horizontal");
             transform.Rotate(0, -horizontal * rotationSpeed * Time.deltaTime, 0);
+        }
+
+        //mobile
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+        {
+            float deltaX = Input.GetTouch(0).deltaPosition.x;
+            transform.Rotate(0, -deltaX * rotationSpeed * Time.deltaTime, 0);
         }
     }
 }
